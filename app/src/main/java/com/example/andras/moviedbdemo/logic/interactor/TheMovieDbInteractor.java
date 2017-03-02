@@ -1,9 +1,13 @@
 package com.example.andras.moviedbdemo.logic.interactor;
 
 import com.example.andras.moviedbdemo.logic.data.LoadPopularMoviesResponse;
+import com.example.andras.moviedbdemo.logic.data.Movie;
 import com.example.andras.moviedbdemo.logic.network.TheMovieDbApi;
 
+import java.util.List;
+
 import retrofit2.Callback;
+import rx.Observable;
 
 /**
  * Created by Andras_Nemeth on 2017. 03. 02..
@@ -17,7 +21,7 @@ public class TheMovieDbInteractor {
         this.api = api;
     }
 
-    public void loadPopularMovies(int page, Callback<LoadPopularMoviesResponse> callback) {
-        api.getPopularMovies(page).enqueue(callback);
+    public Observable<List<Movie>> loadPopularMovies(int page) {
+        return api.getPopularMovies(page).map(LoadPopularMoviesResponse::getMovies);
     }
 }
