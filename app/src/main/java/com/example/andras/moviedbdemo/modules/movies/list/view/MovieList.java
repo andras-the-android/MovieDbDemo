@@ -1,15 +1,19 @@
 package com.example.andras.moviedbdemo.modules.movies.list.view;
 
+import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.widget.TextView;
 
 import com.example.andras.moviedbdemo.R;
+import com.example.andras.moviedbdemo.databinding.ActivityMovieListBinding;
 import com.example.andras.moviedbdemo.logic.data.LoadPopularMoviesResponse;
 import com.example.andras.moviedbdemo.logic.data.Movie;
 import com.example.andras.moviedbdemo.logic.di.TheMovieDbComponent;
 import com.example.andras.moviedbdemo.logic.interactor.TheMovieDbInteractor;
+import com.example.andras.moviedbdemo.modules.movies.list.adapter.MovieListAdapter;
 
 import java.util.List;
 
@@ -34,8 +38,11 @@ public class MovieList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         TheMovieDbComponent.Get.component().inject(this);
-        setContentView(R.layout.activity_movie_list);
-        TextView textView = (TextView) findViewById(R.id.text);
+        ActivityMovieListBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_list);
+        MovieListAdapter adapter = new MovieListAdapter();
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        binding.recyclerView.setAdapter(adapter);
+
         theMovieDbInteractor.loadPopularMovies(1)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.computation())
@@ -53,7 +60,7 @@ public class MovieList extends AppCompatActivity {
 
                     @Override
                     public void onNext(List<Movie> movies) {
-                        textView.setText(movies.get(0).getOriginalTitle());
+                        adapter.addItems(movies);
                     }
                 });
     }
