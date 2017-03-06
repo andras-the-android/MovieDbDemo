@@ -116,5 +116,25 @@ public class Movie implements Serializable {
     public float getAverageVote() {
         return averageVote;
     }
+
+    public String getAverageVoteString() {
+        return String.valueOf(averageVote);
+    }
+
+    public String getConcatenatedGenre() {
+//        StringBuffer sb = new StringBuffer();
+//        for (Genre genre : genres) {
+//            if (sb.length() > 0) {
+//                sb.append(", ");
+//            }
+//            sb.append(genre.getName());
+//        }
+//        return sb.toString();
+        return "temp genre";
+    }
+
+    public String getReleaseYear() {
+        return releaseDateText.substring(0, 4);
+    }
 }
 

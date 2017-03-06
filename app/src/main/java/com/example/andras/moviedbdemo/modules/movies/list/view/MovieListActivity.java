@@ -1,15 +1,13 @@
 package com.example.andras.moviedbdemo.modules.movies.list.view;
 
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
-import android.widget.TextView;
 
 import com.example.andras.moviedbdemo.R;
 import com.example.andras.moviedbdemo.databinding.ActivityMovieListBinding;
-import com.example.andras.moviedbdemo.logic.data.LoadPopularMoviesResponse;
 import com.example.andras.moviedbdemo.logic.data.Movie;
 import com.example.andras.moviedbdemo.logic.di.TheMovieDbComponent;
 import com.example.andras.moviedbdemo.logic.interactor.TheMovieDbInteractor;
@@ -19,17 +17,13 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import rx.Observer;
-import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class MovieList extends AppCompatActivity {
+public class MovieListActivity extends AppCompatActivity {
 
-    private static final String TAG = "MovieList";
+    private static final String TAG = "MovieListActivity";
 
     @Inject
     TheMovieDbInteractor theMovieDbInteractor;

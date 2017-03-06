@@ -1,6 +1,6 @@
 package com.example.andras.moviedbdemo.logic.di;
 
-import com.example.andras.moviedbdemo.modules.movies.list.view.MovieList;
+import com.example.andras.moviedbdemo.modules.movies.list.view.MovieListActivity;
 
 import javax.inject.Singleton;
 
@@ -14,7 +14,7 @@ import dagger.Component;
 @Singleton
 public interface TheMovieDbComponent {
 
-    void inject(MovieList MovieList);
+    void inject(MovieListActivity MovieListActivity);
 
     final class Get {
         private Get(){}
