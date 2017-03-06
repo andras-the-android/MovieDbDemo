@@ -4,6 +4,7 @@
 
     <data>
         <variable name="movie" type="com.example.andras.moviedbdemo.logic.data.Movie"/>
+        <variable name="handler" type="com.example.andras.moviedbdemo.modules.movies.list.adapter.MovieListAdapter.OnClickHandler"/>
     </data>
 
     <LinearLayout
@@ -102,6 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="More info"
+                android:onClick="@{(view) -> handler.goToDetailsScreen(movie)}"
                 android:textSize="16sp"/>
 
         </LinearLayout>

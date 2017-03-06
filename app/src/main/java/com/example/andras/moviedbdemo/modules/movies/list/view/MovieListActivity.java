@@ -23,7 +23,7 @@ import rx.schedulers.Schedulers;
 
 public class MovieListActivity extends AppCompatActivity {
 
-    private static final String TAG = "MovieListActivity";
+    private static final String TAG = "MovieDetailActivity";
 
     @Inject
     TheMovieDbInteractor theMovieDbInteractor;
@@ -33,7 +33,7 @@ public class MovieListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         TheMovieDbComponent.Get.component().inject(this);
         ActivityMovieListBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_list);
-        MovieListAdapter adapter = new MovieListAdapter();
+        MovieListAdapter adapter = new MovieListAdapter(this);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         binding.recyclerView.setAdapter(adapter);
 
