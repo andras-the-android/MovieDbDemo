@@ -31,7 +31,7 @@ public class TheMovieDbApiBuiler {
                 .create(TheMovieDbApi.class);
     }
 
-    private static OkHttpClient getOkHttpClient() {
+    public static OkHttpClient getOkHttpClient() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         httpClient.addInterceptor(TheMovieDbApiBuiler::interceptRequest);
         return httpClient.build();
