@@ -60,7 +60,7 @@ public class MovieDetailViewModel {
     public static void loadImage(ImageView view, String imageUrl) {
         TheMovieDbApiBuilder apiBuilder = MoviesComponent.Get.component().getTheMovieDbApiBuilder();
         Picasso picasso = apiBuilder.getPicasso(view.getContext());
-        picasso.load(apiBuilder.getBaseUrl() + imageUrl).into(view);
+        picasso.load(apiBuilder.getBaseImageUrlForOriginalSize() + imageUrl).centerCrop().into(view);
     }
 
 }

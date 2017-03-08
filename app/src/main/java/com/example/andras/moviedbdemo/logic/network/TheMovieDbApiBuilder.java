@@ -25,6 +25,8 @@ public class TheMovieDbApiBuilder {
     private static final String API_KEY = "api_key";
     private static final String MOVIE_DB_API_KEY = "0a08e38b874d0aa2d426ffc04357069d";
     private static final String MOVIE_DB_BASE_URL = "https://api.themoviedb.org/3/";
+    private static final String MOVIE_DB_BASE_URL_IMAGE_ORIGINAL = "https://image.tmdb.org/t/p/original/";
+    private static final String MOVIE_DB_BASE_URL_IMAGE_THUMBNAIL = "https://image.tmdb.org/t/p/w185/";
 
     public TheMovieDbApi build() {
         return new Retrofit.Builder()
@@ -41,9 +43,14 @@ public class TheMovieDbApiBuilder {
                 .downloader(new OkHttp3Downloader(getOkHttpClient()))
                 .build();
     }
-    public String getBaseUrl() {
-        return MOVIE_DB_BASE_URL;
+    public String getBaseImageUrlForOriginalSize() {
+        return MOVIE_DB_BASE_URL_IMAGE_ORIGINAL;
     }
+
+    public String getBaseImageUrlForThumbnailSize() {
+        return MOVIE_DB_BASE_URL_IMAGE_THUMBNAIL;
+    }
+
 
     private OkHttpClient getOkHttpClient() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
