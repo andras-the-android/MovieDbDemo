@@ -1,12 +1,6 @@
 package com.example.andras.moviedbdemo.logic.data;
 
-import android.databinding.BindingAdapter;
-import android.widget.ImageView;
-
-import com.example.andras.moviedbdemo.logic.network.TheMovieDbApiBuiler;
 import com.google.gson.annotations.SerializedName;
-import com.jakewharton.picasso.OkHttp3Downloader;
-import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
 import java.util.List;
@@ -123,35 +117,6 @@ public class Movie implements Serializable {
         return averageVote;
     }
 
-    public String getAverageVoteString() {
-        return String.valueOf(averageVote);
-    }
 
-    public String getConcatenatedGenre() {
-//        StringBuffer sb = new StringBuffer();
-//        for (Genre genre : genres) {
-//            if (sb.length() > 0) {
-//                sb.append(", ");
-//            }
-//            sb.append(genre.getName());
-//        }
-//        return sb.toString();
-        return "temp genre";
-    }
-
-    public String getReleaseYear() {
-        return releaseDateText.substring(0, 4);
-    }
-
-    @BindingAdapter({"bind:imageUrl"})
-    public static void loadImage(ImageView view, String imageUrl) {
-        Picasso picasso = new Picasso.Builder(view.getContext())
-                .downloader(new OkHttp3Downloader(TheMovieDbApiBuiler.getOkHttpClient()))
-                .build();
-
-        picasso
-                .load("https://api.themoviedb.org/3/" + imageUrl)
-                .into(view);
-    }
 }
 

@@ -1,7 +1,7 @@
 package com.example.andras.moviedbdemo.logic.di;
 
 import com.example.andras.moviedbdemo.logic.network.TheMovieDbApi;
-import com.example.andras.moviedbdemo.logic.network.TheMovieDbApiBuiler;
+import com.example.andras.moviedbdemo.logic.network.TheMovieDbApiBuilder;
 
 import javax.inject.Singleton;
 
@@ -17,7 +17,14 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    TheMovieDbApi provideTheMovieDbApi() {
-        return TheMovieDbApiBuiler.build();
+    TheMovieDbApiBuilder provideTheMovieDbApiBuiler() {
+        return new TheMovieDbApiBuilder();
+    }
+
+
+    @Provides
+    @Singleton
+    TheMovieDbApi provideTheMovieDbApi(TheMovieDbApiBuilder apiBuiler) {
+        return apiBuiler.build();
     }
 }

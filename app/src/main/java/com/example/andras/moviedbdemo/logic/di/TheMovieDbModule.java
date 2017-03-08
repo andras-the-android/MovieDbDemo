@@ -14,6 +14,7 @@ import dagger.Provides;
 @Module(includes = NetworkModule.class)
 public class TheMovieDbModule {
 
+
     @Provides
     @Singleton
     TheMovieDbInteractor provideTheMovieDbInteractor(TheMovieDbApi api) {

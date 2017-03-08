@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="movie" type="com.example.andras.moviedbdemo.logic.data.Movie"/>
+        <variable name="model" type="com.example.andras.moviedbdemo.presentation.movies.detail.viewmodel.MovieDetailViewModel"/>
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -20,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:contentScrim="?attr/colorPrimary"
-                app:title="@{movie.title}"
+                app:title="@{model.title}"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <ImageView
@@ -28,7 +28,7 @@
                     android:layout_height="400dp"
                     android:scaleType="centerCrop"
                     app:layout_collapseMode="parallax"
-                    app:imageUrl="@{movie.posterPath}"/>
+                    app:imageUrl="@{model.posterPath}"/>
 
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
@@ -72,7 +72,7 @@
                     android:textSize="16sp"
                     android:textColor="@color/text_secondary"
                     android:layout_marginBottom="8dp"
-                    android:text="@{movie.averageVoteString}"
+                    android:text="@{model.averageVote}"
                     />
 
                 <TextView
@@ -90,7 +90,7 @@
                     android:textSize="16sp"
                     android:textColor="@color/text_secondary"
                     android:layout_marginBottom="8dp"
-                    android:text="@{movie.releaseDateText}"
+                    android:text="@{model.releaseDate}"
                     />
 
                 <TextView
@@ -108,7 +108,7 @@
                     android:textSize="16sp"
                     android:textColor="@color/text_secondary"
                     android:layout_marginBottom="8dp"
-                    android:text="@{movie.overview}"
+                    android:text="@{model.overview}"
                     />
 
 

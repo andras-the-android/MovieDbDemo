@@ -7,18 +7,19 @@
 
     <application
         android:allowBackup="true"
+        android:name=".presentation.common.MovieDbApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
-        <activity android:name=".modules.movies.list.view.MovieListActivity">
+        <activity android:name=".presentation.movies.list.view.MovieListActivity">
             <intent-filter>                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".modules.movies.detail.view.MovieDetailActivity">
+        <activity android:name=".presentation.movies.detail.view.MovieDetailActivity">
         </activity>
     </application>
 

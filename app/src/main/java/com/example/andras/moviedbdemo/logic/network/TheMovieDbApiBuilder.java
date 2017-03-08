@@ -1,5 +1,10 @@
 package com.example.andras.moviedbdemo.logic.network;
 
+import android.content.Context;
+
+import com.jakewharton.picasso.OkHttp3Downloader;
+import com.squareup.picasso.Picasso;
+
 import java.io.IOException;
 
 import okhttp3.HttpUrl;
@@ -15,13 +20,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Andras_Nemeth on 2017. 03. 02..
  */
 
-public class TheMovieDbApiBuiler {
+public class TheMovieDbApiBuilder {
 
     private static final String API_KEY = "api_key";
     private static final String MOVIE_DB_API_KEY = "0a08e38b874d0aa2d426ffc04357069d";
     private static final String MOVIE_DB_BASE_URL = "https://api.themoviedb.org/3/";
 
-    public static TheMovieDbApi build() {
+    public TheMovieDbApi build() {
         return new Retrofit.Builder()
                 .client(getOkHttpClient())
                 .baseUrl(MOVIE_DB_BASE_URL)
@@ -31,9 +36,18 @@ public class TheMovieDbApiBuiler {
                 .create(TheMovieDbApi.class);
     }
 
-    public static OkHttpClient getOkHttpClient() {
+    public Picasso getPicasso(Context context) {
+        return new Picasso.Builder(context)
+                .downloader(new OkHttp3Downloader(getOkHttpClient()))
+                .build();
+    }
+    public String getBaseUrl() {
+        return MOVIE_DB_BASE_URL;
+    }
+
+    private OkHttpClient getOkHttpClient() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-        httpClient.addInterceptor(TheMovieDbApiBuiler::interceptRequest);
+        httpClient.addInterceptor(TheMovieDbApiBuilder::interceptRequest);
         return httpClient.build();
     }
 
