@@ -6,6 +6,7 @@ import android.widget.ImageView;
 
 import com.example.andras.moviedbdemo.data.Movie;
 import com.example.andras.moviedbdemo.di.MoviesComponent;
+import com.example.andras.moviedbdemo.di.NetworkComponent;
 import com.example.andras.moviedbdemo.network.TheMovieDbApiBuilder;
 import com.example.andras.moviedbdemo.ui.common.Navigator;
 import com.squareup.picasso.Picasso;
@@ -66,9 +67,9 @@ public class MovieListItemViewModel {
 
     @BindingAdapter({"app:imageUrl"})
     public static void loadImage(ImageView view, String imageUrl) {
-//        TheMovieDbApiBuilder apiBuilder = MoviesComponent.Get.component().getTheMovieDbApiBuilder();
-//        Picasso picasso = apiBuilder.getPicasso(view.getContext());
-//        picasso.load(apiBuilder.getBaseImageUrlForThumbnailSize() + imageUrl).into(view);
+        TheMovieDbApiBuilder apiBuilder = NetworkComponent.Get.component().theMovieDbApiBuilder();
+        Picasso picasso = apiBuilder.getPicasso(view.getContext());
+        picasso.load(apiBuilder.getBaseImageUrlForThumbnailSize() + imageUrl).into(view);
     }
 
 

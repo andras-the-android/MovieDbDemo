@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 
-import com.example.andras.moviedbdemo.R;
 import com.example.andras.moviedbdemo.databinding.ActivityMovieListBinding;
+import com.example.andras.moviedbdemo.R;
 import com.example.andras.moviedbdemo.di.MoviesComponent;
 
 import java.util.List;
