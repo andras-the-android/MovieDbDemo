@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">MovieDb Demo</string>
     <string name="search">Search</string>
+
+    <string-array name="main_tab_titles">
+        <item>Movies</item>
+        <item>People</item>
+        <item>Tv shows</item>
+    </string-array>
 </resources>
