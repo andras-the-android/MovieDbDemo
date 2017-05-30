@@ -1,22 +1,21 @@
-package com.example.andras.moviedbdemo.ui.list;
+package com.example.andras.moviedbdemo.ui.main;
 
 import android.databinding.BindingAdapter;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.example.andras.moviedbdemo.data.Movie;
-import com.example.andras.moviedbdemo.di.MoviesComponent;
 import com.example.andras.moviedbdemo.di.NetworkComponent;
 import com.example.andras.moviedbdemo.network.TheMovieDbApiBuilder;
 import com.example.andras.moviedbdemo.ui.common.Navigator;
 import com.squareup.picasso.Picasso;
 
-public class MovieListItemViewModel {
+public class MainListItemViewModel {
 
     private Movie movie;
     private Navigator navigator;
 
-    MovieListItemViewModel(Movie movie, Navigator navigator) {
+    MainListItemViewModel(Movie movie, Navigator navigator) {
         this.movie = movie;
         this.navigator = navigator;
     }

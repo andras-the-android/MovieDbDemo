@@ -3,7 +3,7 @@ package com.example.andras.moviedbdemo.di;
 import android.app.Activity;
 
 import com.example.andras.moviedbdemo.network.TheMovieDbApiBuilder;
-import com.example.andras.moviedbdemo.ui.list.MovieListActivity;
+import com.example.andras.moviedbdemo.ui.main.MainActivity;
 
 import javax.inject.Singleton;
 
@@ -13,7 +13,7 @@ import dagger.Component;
 @Singleton
 public interface MoviesComponent {
 
-    void inject(MovieListActivity MovieListActivity);
+    void inject(MainActivity MainActivity);
     TheMovieDbApiBuilder getTheMovieDbApiBuilder();
 
     final class Get {

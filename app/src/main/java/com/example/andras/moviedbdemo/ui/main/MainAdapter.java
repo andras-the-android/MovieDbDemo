@@ -1,4 +1,4 @@
-package com.example.andras.moviedbdemo.ui.list;
+package com.example.andras.moviedbdemo.ui.main;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.ViewHolder> {
+class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
-    private List<MovieListItemViewModel> items = new ArrayList<>();
+    private List<MainListItemViewModel> items = new ArrayList<>();
 
-    void addItems(List<MovieListItemViewModel> newItems) {
+    void addItems(List<MainListItemViewModel> newItems) {
         items.addAll(newItems);
         notifyDataSetChanged();
     }
@@ -45,7 +45,7 @@ class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.ViewHolder>
             this.binding = binding;
         }
 
-        void bindModel(MovieListItemViewModel movie) {
+        void bindModel(MainListItemViewModel movie) {
             binding.setModel(movie);
         }
     }

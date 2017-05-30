@@ -1,6 +1,6 @@
 package com.example.andras.moviedbdemo.interactor;
 
-import com.example.andras.moviedbdemo.data.LoadPopularMoviesResponse;
+import com.example.andras.moviedbdemo.data.TmdbMovieResponse;
 import com.example.andras.moviedbdemo.data.Movie;
 import com.example.andras.moviedbdemo.network.TheMovieDbApi;
 
@@ -17,6 +17,6 @@ public class TheMovieDbInteractor {
     }
 
     public Observable<List<Movie>> loadPopularMovies(int page) {
-        return api.getPopularMovies(page).map(LoadPopularMoviesResponse::getMovies);
+        return api.getPopularMovies(page).map(TmdbMovieResponse::getMovies);
     }
 }

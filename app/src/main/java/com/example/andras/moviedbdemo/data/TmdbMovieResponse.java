@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.List;
 
-public class LoadPopularMoviesResponse implements Serializable {
+public class TmdbMovieResponse implements Serializable {
 
     @SerializedName("page")
     private int page;
