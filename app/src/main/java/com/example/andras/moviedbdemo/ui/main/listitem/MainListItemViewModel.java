@@ -1,4 +1,4 @@
-package com.example.andras.moviedbdemo.ui.main;
+package com.example.andras.moviedbdemo.ui.main.listitem;
 
 import android.view.View;
 
@@ -9,6 +9,7 @@ public class MainListItemViewModel {
 
     private Movie movie;
     private Navigator navigator;
+    private MainListItemView view;
 
     public MainListItemViewModel(Movie movie, Navigator navigator) {
         this.movie = movie;
@@ -27,8 +28,11 @@ public class MainListItemViewModel {
         return String.valueOf(movie.getReleaseYear());
     }
 
-    public void goToDetailsPage(View view) {
-        navigator.goToDetailsScreen(movie);
+    public void goToDetailsPage(View v) {
+        navigator.goToDetailsScreen(movie, this.view.getTransitionBundle());
     }
 
+    public void setView(MainListItemView view) {
+        this.view = view;
+    }
 }

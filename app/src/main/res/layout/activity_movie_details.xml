@@ -24,11 +24,11 @@
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <ImageView
+                    android:id="@+id/detail_poster_image_view"
                     android:layout_width="match_parent"
                     android:layout_height="400dp"
                     android:scaleType="centerCrop"
-                    app:layout_collapseMode="parallax"
-                    app:imageUrl="@{model.movie.imageUrl}"/>
+                    app:layout_collapseMode="parallax"/>
 
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"

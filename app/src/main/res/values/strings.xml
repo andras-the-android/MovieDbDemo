@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">MovieDb Demo</string>
     <string name="search">Search</string>
+    <string name="transition_main_to_detail">mainToDetail</string>
 
     <string-array name="main_tab_titles">
         <item>Movies</item>

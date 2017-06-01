@@ -11,6 +11,8 @@ import com.example.andras.moviedbdemo.R;
 import com.example.andras.moviedbdemo.databinding.ActivityMainBinding;
 import com.example.andras.moviedbdemo.di.MoviesComponent;
 import com.example.andras.moviedbdemo.ui.common.SearchViewWrapper;
+import com.example.andras.moviedbdemo.ui.main.listitem.MainListItemViewModel;
+import com.example.andras.moviedbdemo.ui.main.listitem.MovieAdapter;
 
 import java.util.List;
 
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         super.onCreate(savedInstanceState);
         MoviesComponent.Get.component(this).inject(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        adapter = new MovieAdapter();
+        adapter = new MovieAdapter(this);
         setSupportActionBar(binding.toolbar);
         moviesContent = new MainContentView(this, adapter);
         tvShowContent = new MainContentView(this, adapter);

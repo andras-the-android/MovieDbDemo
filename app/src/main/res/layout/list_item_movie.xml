@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="model" type="com.example.andras.moviedbdemo.ui.main.MainListItemViewModel"/>
+        <variable name="model" type="com.example.andras.moviedbdemo.ui.main.listitem.MainListItemViewModel"/>
     </data>
 
     <android.support.v7.widget.CardView
@@ -19,9 +19,11 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/poster_image_view"
                 android:layout_width="130dp"
                 android:layout_height="match_parent"
                 app:imageUrl="@{model.movie.imageUrl}"
+                android:transitionName="xxx"
                 android:layout_margin="2dp"/>
 
             <LinearLayout
@@ -75,7 +77,6 @@
 
                     <!--Todo download from the server-->
                     <TextView
-                        android:id="@+id/textView2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -106,7 +107,6 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"

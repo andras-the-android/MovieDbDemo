@@ -5,9 +5,9 @@ import android.util.Log;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.example.andras.moviedbdemo.data.Movie;
-import com.example.andras.moviedbdemo.data.tmdb.TmdbMovie;
 import com.example.andras.moviedbdemo.interactor.TheMovieDbInteractor;
 import com.example.andras.moviedbdemo.ui.common.Navigator;
+import com.example.andras.moviedbdemo.ui.main.listitem.MainListItemViewModel;
 
 import java.util.List;
 
