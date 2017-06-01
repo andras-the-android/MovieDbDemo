@@ -3,6 +3,7 @@ package com.example.andras.moviedbdemo.ui.main.listitem;
 import android.app.ActivityOptions;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -66,8 +67,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         @Override
         public Bundle getTransitionBundle() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                //ActivityOptionsCompat sometimes crashes
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                         activity,
                         binding.posterImageView,
                         ViewCompat.getTransitionName(binding.posterImageView));
