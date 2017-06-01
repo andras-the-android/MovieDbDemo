@@ -1,4 +1,4 @@
-package com.example.andras.moviedbdemo.data;
+package com.example.andras.moviedbdemo.data.tmdb;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -11,7 +11,7 @@ public class TmdbMovieResponse implements Serializable {
     private int page;
 
     @SerializedName("results")
-    private List<Movie> movies;
+    private List<TmdbMovie> movies;
 
     @SerializedName("total_results")
     private int totalResults;
@@ -23,7 +23,7 @@ public class TmdbMovieResponse implements Serializable {
         return page;
     }
 
-    public List<Movie> getMovies() {
+    public List<TmdbMovie> getMovies() {
         return movies;
     }
 

@@ -1,4 +1,4 @@
-package com.example.andras.moviedbdemo.data;
+package com.example.andras.moviedbdemo.data.tmdb;
 
 import com.google.gson.annotations.SerializedName;
 

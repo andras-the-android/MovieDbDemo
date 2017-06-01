@@ -1,6 +1,6 @@
 package com.example.andras.moviedbdemo.network;
 
-import com.example.andras.moviedbdemo.data.TmdbMovieResponse;
+import com.example.andras.moviedbdemo.data.tmdb.TmdbMovieResponse;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;

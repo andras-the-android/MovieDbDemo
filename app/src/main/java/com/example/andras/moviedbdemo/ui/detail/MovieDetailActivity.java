@@ -6,8 +6,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.andras.moviedbdemo.R;
-import com.example.andras.moviedbdemo.databinding.ActivityMovieDetailsBinding;
 import com.example.andras.moviedbdemo.data.Movie;
+import com.example.andras.moviedbdemo.databinding.ActivityMovieDetailsBinding;
 
 /**
  * Created by Andras Nemeth on 2017. 03. 06..

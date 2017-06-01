@@ -1,5 +1,6 @@
 package com.example.andras.moviedbdemo.di;
 
+import com.example.andras.moviedbdemo.interactor.MovieConverter;
 import com.example.andras.moviedbdemo.interactor.TheMovieDbInteractor;
 import com.example.andras.moviedbdemo.network.TheMovieDbApi;
 
@@ -14,7 +15,13 @@ class TheMovieDbModule {
 
     @Provides
     @Singleton
-    TheMovieDbInteractor provideTheMovieDbInteractor(TheMovieDbApi api) {
-        return new TheMovieDbInteractor(api);
+    MovieConverter provideMovieConverter() {
+        return new MovieConverter();
+    }
+
+    @Provides
+    @Singleton
+    TheMovieDbInteractor provideTheMovieDbInteractor(TheMovieDbApi api, MovieConverter movieConverter) {
+        return new TheMovieDbInteractor(api, movieConverter);
     }
 }

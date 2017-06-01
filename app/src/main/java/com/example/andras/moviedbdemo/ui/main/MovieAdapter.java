@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
+class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
     private List<MainListItemViewModel> items = new ArrayList<>();
 

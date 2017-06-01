@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.andras.moviedbdemo.data.Movie;
+import com.example.andras.moviedbdemo.data.tmdb.TmdbMovie;
 import com.example.andras.moviedbdemo.di.NetworkComponent;
 import com.example.andras.moviedbdemo.network.TheMovieDbApiBuilder;
 import com.example.andras.moviedbdemo.ui.common.Navigator;
@@ -15,7 +16,7 @@ public class MainListItemViewModel {
     private Movie movie;
     private Navigator navigator;
 
-    MainListItemViewModel(Movie movie, Navigator navigator) {
+    public MainListItemViewModel(Movie movie, Navigator navigator) {
         this.movie = movie;
         this.navigator = navigator;
     }
@@ -24,40 +25,12 @@ public class MainListItemViewModel {
         return movie;
     }
 
-    public String getOverview() {
-        return movie.getOverview();
+    public String getRatingText() {
+        return String.valueOf(movie.getRating());
     }
 
-    public String getPosterPath() {
-        return movie.getPosterPath();
-    }
-
-    public String getTitle() {
-        return movie.getTitle();
-    }
-
-    public String getAverageVote() {
-        return String.valueOf(movie.getAverageVote());
-    }
-
-    public String getReleaseDate() {
-        return String.valueOf(movie.getReleaseDateText());
-    }
-
-    public String getConcatenatedGenre() {
-//        StringBuffer sb = new StringBuffer();
-//        for (Genre genre : genres) {
-//            if (sb.length() > 0) {
-//                sb.append(", ");
-//            }
-//            sb.append(genre.getName());
-//        }
-//        return sb.toString();
-        return "temp genre";
-    }
-
-    public String getReleaseYear() {
-        return movie.getReleaseDateText().substring(0, 4);
+    public String getReleaseYearText() {
+        return String.valueOf(movie.getReleaseYear());
     }
 
     public void goToDetailsPage(View view) {

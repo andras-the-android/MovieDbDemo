@@ -14,13 +14,23 @@ import com.example.andras.moviedbdemo.databinding.ViewMainContentBinding;
 @SuppressLint("ViewConstructor")
 public class MainContentView extends FrameLayout {
 
+    private final ViewMainContentBinding binding;
+
     public MainContentView(@NonNull Context context, RecyclerView.Adapter adapter) {
         super(context);
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-        ViewMainContentBinding binding = ViewMainContentBinding.inflate(layoutInflater, this, true);
+        binding = ViewMainContentBinding.inflate(layoutInflater, this, true);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
         binding.recyclerView.setAdapter(adapter);
+    }
+
+    public void showLoaderOverlay() {
+        binding.loaderOverlay.setVisibility(VISIBLE);
+    }
+
+    public void hideLoaderOverlay() {
+        binding.loaderOverlay.setVisibility(GONE);
     }
 
 }

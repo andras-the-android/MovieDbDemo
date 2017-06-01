@@ -4,7 +4,7 @@
 
     <string-array name="main_tab_titles">
         <item>Movies</item>
-        <item>People</item>
+        <!--<item>People</item>-->
         <item>Tv shows</item>
     </string-array>
 </resources>

@@ -6,10 +6,6 @@ import android.content.Intent;
 import com.example.andras.moviedbdemo.data.Movie;
 import com.example.andras.moviedbdemo.ui.detail.MovieDetailActivity;
 
-/**
- * Created by Andras_Nemeth on 2017. 03. 07..
- */
-
 public class Navigator {
 
     private Context context;

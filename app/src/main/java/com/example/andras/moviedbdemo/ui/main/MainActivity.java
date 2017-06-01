@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.andras.moviedbdemo.R;
-import com.example.andras.moviedbdemo.databinding.ActivityMovieListBinding;
+import com.example.andras.moviedbdemo.databinding.ActivityMainBinding;
 import com.example.andras.moviedbdemo.di.MoviesComponent;
 import com.example.andras.moviedbdemo.ui.common.SearchViewWrapper;
 
@@ -22,23 +22,23 @@ public class MainActivity extends AppCompatActivity implements MainView {
     @Inject
     MainViewModel model;
 
-    private MainAdapter adapter;
+    private MovieAdapter adapter;
     private SearchViewWrapper searchView;
     private MainContentView moviesContent;
     private MainContentView tvShowContent;
-    private ActivityMovieListBinding binding;
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MoviesComponent.Get.component(this).inject(this);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_list);
-        adapter = new MainAdapter();
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        adapter = new MovieAdapter();
         setSupportActionBar(binding.toolbar);
         moviesContent = new MainContentView(this, adapter);
         tvShowContent = new MainContentView(this, adapter);
 
-        binding.viewPager.setAdapter(new PagerAdapter(new MainContentView[]{moviesContent, moviesContent, tvShowContent} ));
+        binding.viewPager.setAdapter(new PagerAdapter(new MainContentView[]{moviesContent, tvShowContent} ));
         binding.tabLayout.setupWithViewPager(binding.viewPager);
         model.setView(this);
     }

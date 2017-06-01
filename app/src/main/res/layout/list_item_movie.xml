@@ -8,7 +8,6 @@
     </data>
 
     <android.support.v7.widget.CardView
-        android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_gravity="center"
@@ -22,13 +21,14 @@
             <ImageView
                 android:layout_width="130dp"
                 android:layout_height="match_parent"
-                app:imageUrl="@{model.posterPath}"/>
+                app:imageUrl="@{model.movie.imageUrl}"
+                android:layout_margin="2dp"/>
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="8dp">
+                android:layout_margin="4dp">
 
 
                 <LinearLayout
@@ -37,30 +37,29 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/movie_list_item_title"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="@{model.title}"
+                        android:text="@{model.movie.title}"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        tools:text="This movie has a very long title"
+                        tools:text="This tmdbMovie has a very long title"
                         android:textSize="16sp"
                         android:textColor="@color/text_primary"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{model.averageVote}"
+                        android:text="@{model.ratingText}"
                         tools:text="9.9"
                         android:textSize="16sp"
                         android:textColor="@color/text_primary"
-                        android:layout_marginLeft="4dp"/>
+                        android:layout_marginStart="4dp"/>
 
                     <ImageView
                         android:layout_width="18dp"
                         android:layout_height="18dp"
-                        android:layout_marginLeft="4dp"
+                        android:layout_marginEnd="4dp"
                         android:layout_gravity="center"
                         android:src="@drawable/ic_star"
                         />
@@ -76,28 +75,30 @@
 
                     <!--Todo download from the server-->
                     <TextView
+                        android:id="@+id/textView2"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:maxLines="1"
+                        android:layout_weight="1"
                         android:ellipsize="end"
-                        tools:text="And the genre isn't short either"
+                        android:maxLines="1"
+                        android:text="@{model.movie.genre}"
+                        android:textColor="@color/text_secondary"
                         android:textSize="14sp"
-                        android:textColor="@color/text_secondary"/>
+                        tools:text="And the genre isn't short either" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{model.releaseYear}"
+                        android:text="@{model.releaseYearText}"
                         tools:text="2016"
                         android:textSize="14sp"
                         android:textColor="@color/text_secondary"
-                        android:layout_marginLeft="4dp"/>
+                        android:layout_marginStart="4dp"/>
 
                     <ImageView
                         android:layout_width="18dp"
                         android:layout_height="18dp"
-                        android:layout_marginLeft="4dp"
+                        android:layout_marginEnd="4dp"
                         android:layout_gravity="center"
                         android:src="@drawable/ic_event_grey"
                         />
@@ -109,12 +110,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:text="@{model.overview}"
+                    android:text="@{model.movie.description}"
                     android:textSize="14sp"
                     android:textColor="@color/text_secondary"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:maxLines="3"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:maxLines="6"
                     tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
 
                 <Space
@@ -131,10 +132,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="More info"
+                    android:layout_marginTop="4dp"
                     android:textColor="@color/text_primary"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
                     android:onClick="@{model::goToDetailsPage}"
                     android:textSize="16sp"
-                    android:layout_marginTop="8dp"/>
+                    tools:ignore="NewApi" />
 
             </LinearLayout>
 
