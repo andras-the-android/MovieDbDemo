@@ -25,8 +25,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         this.activity = activity;
     }
 
-    public void addItems(List<MainListItemViewModel> newItems) {
-        items.addAll(newItems);
+    public void setItems(List<MainListItemViewModel> newItems) {
+        items = newItems;
         notifyDataSetChanged();
     }
 

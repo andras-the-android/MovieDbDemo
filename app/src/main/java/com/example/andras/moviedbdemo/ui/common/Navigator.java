@@ -27,7 +27,7 @@ public class Navigator {
         } catch (IllegalArgumentException e) {
             //shared element transition sometimes causes exception. This way we can fallback to the simple way.
             Log.e(TAG, e.getMessage(), e);
-            ContextCompat.startActivity(context, i, bundle);
+            context.startActivity(i);
         }
     }
 }

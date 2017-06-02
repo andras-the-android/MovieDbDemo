@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
     @Inject
     MainViewModel model;
 
-    private MovieAdapter adapter;
+    private MovieAdapter movieAdapter;
+    private MovieAdapter tvAdapter;
     private SearchViewWrapper searchView;
     private MainContentView moviesContent;
     private MainContentView tvShowContent;
@@ -35,10 +36,11 @@ public class MainActivity extends AppCompatActivity implements MainView {
         super.onCreate(savedInstanceState);
         MoviesComponent.Get.component(this).inject(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        adapter = new MovieAdapter(this);
+        movieAdapter = new MovieAdapter(this);
+        tvAdapter = new MovieAdapter(this);
         setSupportActionBar(binding.toolbar);
-        moviesContent = new MainContentView(this, adapter);
-        tvShowContent = new MainContentView(this, adapter);
+        moviesContent = new MainContentView(this, movieAdapter);
+        tvShowContent = new MainContentView(this, tvAdapter);
 
         binding.viewPager.setAdapter(new PagerAdapter(new MainContentView[]{moviesContent, tvShowContent} ));
         binding.tabLayout.setupWithViewPager(binding.viewPager);
@@ -46,8 +48,13 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     @Override
-    public void addItems(List<MainListItemViewModel> movies) {
-        adapter.addItems(movies);
+    public void setMovieItems(List<MainListItemViewModel> movies) {
+        movieAdapter.setItems(movies);
+    }
+
+    @Override
+    public void setTvItems(List<MainListItemViewModel> movies) {
+        tvAdapter.setItems(movies);
     }
 
     @Override

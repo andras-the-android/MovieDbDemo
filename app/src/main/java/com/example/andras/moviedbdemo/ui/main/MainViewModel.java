@@ -33,6 +33,11 @@ public class MainViewModel {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.computation())
                 .subscribe(this::onLoadMoviesFinished, this::onError);
+
+        theMovieDbInteractor.loadPopularTvShows(1)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.computation())
+                .subscribe(this::onLoadTvShowsFinished, this::onError);
     }
 
     private void onError(Throwable e) {
@@ -41,7 +46,12 @@ public class MainViewModel {
 
     private void onLoadMoviesFinished(List<Movie> movies) {
         List<MainListItemViewModel> viewModels = Stream.of(movies).map(movie -> new MainListItemViewModel(movie, navigator)).collect(Collectors.toList());
-        view.addItems(viewModels);
+        view.setMovieItems(viewModels);
+    }
+
+    private void onLoadTvShowsFinished(List<Movie> movies) {
+        List<MainListItemViewModel> viewModels = Stream.of(movies).map(movie -> new MainListItemViewModel(movie, navigator)).collect(Collectors.toList());
+        view.setTvItems(viewModels);
     }
 
 }

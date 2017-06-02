@@ -1,4 +1,4 @@
-package com.example.andras.moviedbdemo.interactor;
+package com.example.andras.moviedbdemo.converter;
 
 
 import android.util.Log;
@@ -13,7 +13,7 @@ public class MovieConverter {
 
     private static final String TAG = "MovieConverter";
 
-    Movie convert(TmdbMovie source) {
+    public Movie convert(TmdbMovie source) {
         Movie target = new Movie();
         target.setTitle(source.getTitle());
         target.setGenre(getGenre(source.getGenres()));

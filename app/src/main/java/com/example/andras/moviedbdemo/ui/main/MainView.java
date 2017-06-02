@@ -7,5 +7,7 @@ import java.util.List;
 
 interface MainView {
 
-    void addItems(List<MainListItemViewModel> movies);
+    void setMovieItems(List<MainListItemViewModel> movies);
+
+    void setTvItems(List<MainListItemViewModel> movies);
 }

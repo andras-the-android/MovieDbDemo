@@ -5,7 +5,17 @@ import android.view.View;
 import com.example.andras.moviedbdemo.data.Movie;
 import com.example.andras.moviedbdemo.ui.common.Navigator;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 public class MainListItemViewModel {
+
+    private static NumberFormat ratingFormat;
+    static {
+        ratingFormat = new DecimalFormat("#.0");
+        ratingFormat.setRoundingMode(RoundingMode.HALF_UP);
+    }
 
     private Movie movie;
     private Navigator navigator;
@@ -21,7 +31,7 @@ public class MainListItemViewModel {
     }
 
     public String getRatingText() {
-        return String.valueOf(movie.getRating());
+        return ratingFormat.format(movie.getRating());
     }
 
     public String getReleaseYearText() {
