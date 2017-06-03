@@ -3,7 +3,7 @@ package com.example.andras.moviedbdemo.converter;
 
 import android.util.Log;
 
-import com.example.andras.moviedbdemo.data.Movie;
+import com.example.andras.moviedbdemo.data.MainListItem;
 import com.example.andras.moviedbdemo.data.tmdb.Genre;
 import com.example.andras.moviedbdemo.data.tmdb.TmdbMovie;
 
@@ -13,8 +13,8 @@ public class MovieConverter {
 
     private static final String TAG = "MovieConverter";
 
-    public Movie convert(TmdbMovie source) {
-        Movie target = new Movie();
+    public MainListItem convert(TmdbMovie source) {
+        MainListItem target = new MainListItem();
         target.setTitle(source.getTitle());
         target.setGenre(getGenre(source.getGenres()));
         target.setRating(source.getAverageVote());

@@ -22,7 +22,7 @@
                 android:id="@+id/poster_image_view"
                 android:layout_width="130dp"
                 android:layout_height="match_parent"
-                app:imageUrl="@{model.movie.imageUrl}"
+                app:imageUrl="@{model.dto.imageUrl}"
                 android:transitionName="xxx"
                 android:layout_margin="2dp"/>
 
@@ -42,7 +42,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="@{model.movie.title}"
+                        android:text="@{model.dto.title}"
                         android:maxLines="1"
                         android:ellipsize="end"
                         tools:text="This tmdbMovie has a very long title"
@@ -82,7 +82,7 @@
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:text="@{model.movie.genre}"
+                        android:text="@{model.dto.genre}"
                         android:textColor="@color/text_secondary"
                         android:textSize="14sp"
                         tools:text="And the genre isn't short either" />
@@ -110,7 +110,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:text="@{model.movie.description}"
+                    android:text="@{model.dto.description}"
                     android:textSize="14sp"
                     android:textColor="@color/text_secondary"
                     android:layout_marginTop="4dp"

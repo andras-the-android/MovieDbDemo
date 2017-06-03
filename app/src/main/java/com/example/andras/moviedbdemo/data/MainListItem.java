@@ -3,7 +3,7 @@ package com.example.andras.moviedbdemo.data;
 
 import java.io.Serializable;
 
-public class Movie implements Serializable {
+public class MainListItem implements Serializable {
 
     private String title;
     private String genre;
@@ -11,6 +11,7 @@ public class Movie implements Serializable {
     private int releaseYear;
     private String description;
     private String imageUrl;
+    private boolean person;
 
     public String getTitle() {
         return title;
@@ -58,5 +59,13 @@ public class Movie implements Serializable {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public boolean isPerson() {
+        return person;
+    }
+
+    public void setPerson(boolean person) {
+        this.person = person;
     }
 }

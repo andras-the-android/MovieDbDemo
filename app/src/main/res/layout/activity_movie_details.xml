@@ -34,7 +34,7 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:title="@{model.movie.title}"
+                    android:title="@{model.mainListItem.title}"
                     app:layout_collapseMode="pin"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                     app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
@@ -109,7 +109,7 @@
                     android:textSize="16sp"
                     android:textColor="@color/text_secondary"
                     android:layout_marginBottom="8dp"
-                    android:text="@{model.movie.description}"
+                    android:text="@{model.mainListItem.description}"
                     />
 
 

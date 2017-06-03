@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
-import com.example.andras.moviedbdemo.data.Movie;
+import com.example.andras.moviedbdemo.data.MainListItem;
 import com.example.andras.moviedbdemo.ui.detail.MovieDetailActivity;
 
 public class Navigator {
@@ -19,9 +19,9 @@ public class Navigator {
         this.context = context;
     }
 
-    public void goToDetailsScreen(Movie movie, Bundle bundle) {
+    public void goToDetailsScreen(MainListItem mainListItem, Bundle bundle) {
         Intent i = new Intent(context, MovieDetailActivity.class);
-        i.putExtra(MovieDetailActivity.EXTRA_MODEL, movie);
+        i.putExtra(MovieDetailActivity.EXTRA_MODEL, mainListItem);
         try {
             ContextCompat.startActivity(context, i, bundle);
         } catch (IllegalArgumentException e) {

@@ -9,21 +9,20 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 
-@Component(modules = MoviesModule.class)
+@Component(modules = {MainModule.class, CommonModule.class})
 @Singleton
-public interface MoviesComponent {
+public interface MainComponent {
 
     void inject(MainActivity MainActivity);
-    TheMovieDbApiBuilder getTheMovieDbApiBuilder();
 
     final class Get {
         private Get(){}
 
-        static MoviesComponent component;
+        static MainComponent component;
 
-        public static MoviesComponent component(Activity activity) {
+        public static MainComponent component(Activity activity) {
             if (component == null) {
-                component = DaggerMoviesComponent.builder()
+                component = DaggerMainComponent.builder()
                         .theMovieDbModule(new TheMovieDbModule())
                         .networkModule(new NetworkModule())
                         .commonModule(new CommonModule(activity))

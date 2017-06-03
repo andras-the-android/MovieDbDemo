@@ -8,73 +8,79 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.andras.moviedbdemo.R;
+import com.example.andras.moviedbdemo.data.MainListItem;
 import com.example.andras.moviedbdemo.databinding.ActivityMainBinding;
-import com.example.andras.moviedbdemo.di.MoviesComponent;
+import com.example.andras.moviedbdemo.di.MainComponent;
+import com.example.andras.moviedbdemo.searcher.Searcher;
+import com.example.andras.moviedbdemo.searcher.SearcherImpl;
+import com.example.andras.moviedbdemo.ui.common.Navigator;
 import com.example.andras.moviedbdemo.ui.common.SearchViewWrapper;
+import com.example.andras.moviedbdemo.ui.main.content.MainContentViewImpl;
+import com.example.andras.moviedbdemo.ui.main.content.MainContentViewModel;
 import com.example.andras.moviedbdemo.ui.main.listitem.MainListItemViewModel;
-import com.example.andras.moviedbdemo.ui.main.listitem.MovieAdapter;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-//9 pomodoros
+//28 pomodoros
 public class MainActivity extends AppCompatActivity implements MainView {
 
     @Inject
     MainViewModel model;
+    @Inject
+    Navigator navigator;
 
-    private MovieAdapter movieAdapter;
-    private MovieAdapter tvAdapter;
-    private SearchViewWrapper searchView;
-    private MainContentView moviesContent;
-    private MainContentView tvShowContent;
     private ActivityMainBinding binding;
+    private MainContentViewModel moviesViewModel;
+    private MainContentViewModel tvShowsViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MoviesComponent.Get.component(this).inject(this);
+        MainComponent.Get.component(this).inject(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        movieAdapter = new MovieAdapter(this);
-        tvAdapter = new MovieAdapter(this);
         setSupportActionBar(binding.toolbar);
-        moviesContent = new MainContentView(this, movieAdapter);
-        tvShowContent = new MainContentView(this, tvAdapter);
 
-        binding.viewPager.setAdapter(new PagerAdapter(new MainContentView[]{moviesContent, tvShowContent} ));
+        MainContentViewImpl moviesView = new MainContentViewImpl(this);
+        moviesViewModel = new MainContentViewModel(moviesView, new SearcherImpl<>(), navigator);
+        MainContentViewImpl tvShowView = new MainContentViewImpl(this);
+        tvShowsViewModel = new MainContentViewModel(tvShowView, new SearcherImpl<>(), navigator);
+
+        binding.viewPager.setAdapter(new PagerAdapter(new MainContentViewImpl[]{moviesView, tvShowView} ));
         binding.tabLayout.setupWithViewPager(binding.viewPager);
         model.setView(this);
     }
 
     @Override
-    public void setMovieItems(List<MainListItemViewModel> movies) {
-        movieAdapter.setItems(movies);
+    public void setMovieItems(List<MainListItem> movies) {
+        moviesViewModel.setItems(movies);
     }
 
     @Override
-    public void setTvItems(List<MainListItemViewModel> movies) {
-        tvAdapter.setItems(movies);
+    public void setTvItems(List<MainListItem> movies) {
+        tvShowsViewModel.setItems(movies);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-
-        searchView = new SearchViewWrapper(this, menu);
+        SearchViewWrapper searchView = new SearchViewWrapper(this, menu);
         searchView.setCallback(this::onSearchViewTextChanged);
         return true;
     }
 
     private void onSearchViewTextChanged(String expression) {
+        moviesViewModel.search(expression);
+        tvShowsViewModel.search(expression);
     }
 
     private class PagerAdapter extends android.support.v4.view.PagerAdapter {
 
         private final String[] titles;
-        private final MainContentView[] pages;
+        private final MainContentViewImpl[] pages;
 
-        PagerAdapter(MainContentView[] pages) {
+        PagerAdapter(MainContentViewImpl[] pages) {
             titles = getResources().getStringArray(R.array.main_tab_titles);
             this.pages = pages;
         }

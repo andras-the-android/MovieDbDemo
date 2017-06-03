@@ -12,7 +12,7 @@ import android.transition.Transition;
 import android.view.View;
 
 import com.example.andras.moviedbdemo.R;
-import com.example.andras.moviedbdemo.data.Movie;
+import com.example.andras.moviedbdemo.data.MainListItem;
 import com.example.andras.moviedbdemo.databinding.ActivityMovieDetailsBinding;
 import com.example.andras.moviedbdemo.di.NetworkComponent;
 import com.example.andras.moviedbdemo.network.TheMovieDbApiBuilder;
@@ -27,24 +27,24 @@ public class MovieDetailActivity extends AppCompatActivity {
     private ActivityMovieDetailsBinding binding;
     private TheMovieDbApiBuilder apiBuilder;
     private Picasso picasso;
-    private Movie movie;
+    private MainListItem mainListItem;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_details);
         ActivityCompat.postponeEnterTransition(this);
-        movie = (Movie) getIntent().getSerializableExtra(EXTRA_MODEL);
-        binding.setModel(new MovieDetailViewModel(movie));
-        ViewCompat.setTransitionName(binding.detailPosterImageView, movie.getTitle());
+        mainListItem = (MainListItem) getIntent().getSerializableExtra(EXTRA_MODEL);
+        binding.setModel(new MovieDetailViewModel(mainListItem));
+        ViewCompat.setTransitionName(binding.detailPosterImageView, mainListItem.getTitle());
         setupToolbar();
-        loadThumbnailImage(movie);
+        loadThumbnailImage(mainListItem);
     }
 
-    private void loadThumbnailImage(Movie movie) {
+    private void loadThumbnailImage(MainListItem mainListItem) {
         apiBuilder = NetworkComponent.Get.component().theMovieDbApiBuilder();
         picasso = apiBuilder.getPicasso(this);
-        picasso.load(apiBuilder.getBaseImageUrlForThumbnailSize() + movie.getImageUrl())
+        picasso.load(apiBuilder.getBaseImageUrlForThumbnailSize() + mainListItem.getImageUrl())
                 .into(binding.detailPosterImageView, new Callback() {
             @Override
             public void onSuccess() {
@@ -60,7 +60,7 @@ public class MovieDetailActivity extends AppCompatActivity {
     }
 
     private void loadFullSizeImage(Transition transition) {
-        picasso.load(apiBuilder.getBaseImageUrlForOriginalSize() + movie.getImageUrl())
+        picasso.load(apiBuilder.getBaseImageUrlForOriginalSize() + mainListItem.getImageUrl())
                 .placeholder(binding.detailPosterImageView.getDrawable())
                 .into(binding.detailPosterImageView);
     }

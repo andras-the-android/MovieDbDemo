@@ -9,12 +9,12 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
-@Module(includes = {TheMovieDbModule.class, CommonModule.class})
-class MoviesModule {
+@Module(includes = TheMovieDbModule.class)
+class MainModule {
 
     @Provides
     @Singleton
-    MainViewModel provideMovieListModel(TheMovieDbInteractor theMovieDbInteractor, Navigator navigator) {
-        return new MainViewModel(theMovieDbInteractor, navigator);
+    MainViewModel provideMovieListModel(TheMovieDbInteractor theMovieDbInteractor) {
+        return new MainViewModel(theMovieDbInteractor);
     }
 }

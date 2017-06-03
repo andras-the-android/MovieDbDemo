@@ -1,25 +1,25 @@
 package com.example.andras.moviedbdemo.ui.detail;
 
-import com.example.andras.moviedbdemo.data.Movie;
+import com.example.andras.moviedbdemo.data.MainListItem;
 
 public class MovieDetailViewModel {
 
-    private Movie movie;
+    private MainListItem mainListItem;
 
-    MovieDetailViewModel(Movie movie) {
-        this.movie = movie;
+    MovieDetailViewModel(MainListItem mainListItem) {
+        this.mainListItem = mainListItem;
     }
 
-    public Movie getMovie() {
-        return movie;
+    public MainListItem getMainListItem() {
+        return mainListItem;
     }
 
     public String getRatingText() {
-        return String.valueOf(movie.getRating());
+        return String.valueOf(mainListItem.getRating());
     }
 
     public String getReleaseYearText() {
-        return String.valueOf(movie.getReleaseYear());
+        return String.valueOf(mainListItem.getReleaseYear());
     }
 
 }

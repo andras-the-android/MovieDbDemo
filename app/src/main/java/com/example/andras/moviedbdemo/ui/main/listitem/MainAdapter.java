@@ -1,6 +1,5 @@
 package com.example.andras.moviedbdemo.ui.main.listitem;
 
-import android.app.ActivityOptions;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -16,12 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
+public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     private List<MainListItemViewModel> items = new ArrayList<>();
     private AppCompatActivity activity;
 
-    public MovieAdapter(AppCompatActivity activity) {
+    public MainAdapter(AppCompatActivity activity) {
         this.activity = activity;
     }
 
@@ -58,10 +57,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             this.activity = activity;
         }
 
-        void bindModel(MainListItemViewModel movie) {
-            binding.setModel(movie);
-            movie.setView(this);
-            ViewCompat.setTransitionName(binding.posterImageView, movie.getMovie().getTitle());
+        void bindModel(MainListItemViewModel viewModel) {
+            if (binding.getModel() != viewModel) {
+                binding.setModel(viewModel);
+                viewModel.setView(this);
+                ViewCompat.setTransitionName(binding.posterImageView, viewModel.getDto().getTitle());
+            }
         }
 
         @Override

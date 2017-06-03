@@ -4,7 +4,7 @@ import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.example.andras.moviedbdemo.converter.MovieConverter;
 import com.example.andras.moviedbdemo.converter.TvShowConverter;
-import com.example.andras.moviedbdemo.data.Movie;
+import com.example.andras.moviedbdemo.data.MainListItem;
 import com.example.andras.moviedbdemo.data.tmdb.TmdbMovie;
 import com.example.andras.moviedbdemo.data.tmdb.TmdbMovieResponse;
 import com.example.andras.moviedbdemo.data.tmdb.TmdbTvShow;
@@ -27,23 +27,23 @@ public class TheMovieDbInteractor {
         this.tvShowConverter = tvShowConverter;
     }
 
-    public Observable<List<Movie>> loadPopularMovies(int page) {
+    public Observable<List<MainListItem>> loadPopularMovies(int page) {
         return api.getPopularMovies(page)
                 .map(TmdbMovieResponse::getMovies)
                 .map(this::mapMovieList);
     }
 
-    public Observable<List<Movie>> loadPopularTvShows(int page) {
+    public Observable<List<MainListItem>> loadPopularTvShows(int page) {
         return api.getPopularTvShows(page)
                 .map(TmdbTvShowResponse::getTvShows)
                 .map(this::mapTvShowList);
     }
 
-    private List<Movie> mapMovieList(List<TmdbMovie> tmdbMovies) {
+    private List<MainListItem> mapMovieList(List<TmdbMovie> tmdbMovies) {
         return Stream.of(tmdbMovies).map(movieConverter::convert).collect(Collectors.toList());
     }
 
-    private List<Movie> mapTvShowList(List<TmdbTvShow> tmdbTvShows) {
+    private List<MainListItem> mapTvShowList(List<TmdbTvShow> tmdbTvShows) {
         return Stream.of(tmdbTvShows).map(tvShowConverter::convert).collect(Collectors.toList());
     }
 }
