@@ -3,7 +3,7 @@ package com.example.andras.moviedbdemo.ui.main.content;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
-import com.example.andras.moviedbdemo.data.MainListItem;
+import com.example.andras.moviedbdemo.data.MainListItemDto;
 import com.example.andras.moviedbdemo.searcher.Searcher;
 import com.example.andras.moviedbdemo.ui.common.Navigator;
 import com.example.andras.moviedbdemo.ui.main.listitem.MainListItemViewModel;
@@ -24,7 +24,7 @@ public class MainContentViewModel {
         searcher.setMatcher((item, searchExpression) -> item.getDto().getTitle().toLowerCase().contains(searchExpression.toLowerCase()));
     }
 
-    public void setItems(List<MainListItem> items) {
+    public void setItems(List<MainListItemDto> items) {
         viewModels = Stream.of(items).map(movie -> new MainListItemViewModel(movie, navigator)).collect(Collectors.toList());
         searcher.setItems(viewModels);
         view.hideLoaderOverlay();
@@ -36,4 +36,6 @@ public class MainContentViewModel {
             view.setItems(searcher.search(expression));
         }
     }
+
+
 }

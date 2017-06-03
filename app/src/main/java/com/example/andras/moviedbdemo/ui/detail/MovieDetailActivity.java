@@ -12,7 +12,7 @@ import android.transition.Transition;
 import android.view.View;
 
 import com.example.andras.moviedbdemo.R;
-import com.example.andras.moviedbdemo.data.MainListItem;
+import com.example.andras.moviedbdemo.data.MainListItemDto;
 import com.example.andras.moviedbdemo.databinding.ActivityMovieDetailsBinding;
 import com.example.andras.moviedbdemo.di.NetworkComponent;
 import com.example.andras.moviedbdemo.network.TheMovieDbApiBuilder;
@@ -27,21 +27,21 @@ public class MovieDetailActivity extends AppCompatActivity {
     private ActivityMovieDetailsBinding binding;
     private TheMovieDbApiBuilder apiBuilder;
     private Picasso picasso;
-    private MainListItem mainListItem;
+    private MainListItemDto mainListItem;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_details);
         ActivityCompat.postponeEnterTransition(this);
-        mainListItem = (MainListItem) getIntent().getSerializableExtra(EXTRA_MODEL);
+        mainListItem = (MainListItemDto) getIntent().getSerializableExtra(EXTRA_MODEL);
         binding.setModel(new MovieDetailViewModel(mainListItem));
         ViewCompat.setTransitionName(binding.detailPosterImageView, mainListItem.getTitle());
         setupToolbar();
         loadThumbnailImage(mainListItem);
     }
 
-    private void loadThumbnailImage(MainListItem mainListItem) {
+    private void loadThumbnailImage(MainListItemDto mainListItem) {
         apiBuilder = NetworkComponent.Get.component().theMovieDbApiBuilder();
         picasso = apiBuilder.getPicasso(this);
         picasso.load(apiBuilder.getBaseImageUrlForThumbnailSize() + mainListItem.getImageUrl())

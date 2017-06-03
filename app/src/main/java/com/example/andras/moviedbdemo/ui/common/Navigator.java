@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
-import com.example.andras.moviedbdemo.data.MainListItem;
+import com.example.andras.moviedbdemo.data.MainListItemDto;
 import com.example.andras.moviedbdemo.ui.detail.MovieDetailActivity;
 
 public class Navigator {
@@ -19,7 +19,7 @@ public class Navigator {
         this.context = context;
     }
 
-    public void goToDetailsScreen(MainListItem mainListItem, Bundle bundle) {
+    public void goToDetailsScreen(MainListItemDto mainListItem, Bundle bundle) {
         Intent i = new Intent(context, MovieDetailActivity.class);
         i.putExtra(MovieDetailActivity.EXTRA_MODEL, mainListItem);
         try {

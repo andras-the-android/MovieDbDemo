@@ -3,7 +3,7 @@ package com.example.andras.moviedbdemo.data;
 
 import java.io.Serializable;
 
-public class MainListItem implements Serializable {
+public class MainListItemDto implements Serializable {
 
     private String title;
     private String genre;

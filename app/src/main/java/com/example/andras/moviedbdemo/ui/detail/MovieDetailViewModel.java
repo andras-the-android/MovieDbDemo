@@ -1,16 +1,16 @@
 package com.example.andras.moviedbdemo.ui.detail;
 
-import com.example.andras.moviedbdemo.data.MainListItem;
+import com.example.andras.moviedbdemo.data.MainListItemDto;
 
 public class MovieDetailViewModel {
 
-    private MainListItem mainListItem;
+    private MainListItemDto mainListItem;
 
-    MovieDetailViewModel(MainListItem mainListItem) {
+    MovieDetailViewModel(MainListItemDto mainListItem) {
         this.mainListItem = mainListItem;
     }
 
-    public MainListItem getMainListItem() {
+    public MainListItemDto getMainListItem() {
         return mainListItem;
     }
 

@@ -3,17 +3,17 @@ package com.example.andras.moviedbdemo.converter;
 
 import android.util.Log;
 
-import com.example.andras.moviedbdemo.data.MainListItem;
+import com.example.andras.moviedbdemo.data.MainListItemDto;
 import com.example.andras.moviedbdemo.data.tmdb.TmdbTvShow;
 
 import java.util.List;
 
-public class TvShowConverter {
+public class TvShowConverter implements Converter<TmdbTvShow, MainListItemDto> {
 
     private static final String TAG = "MovieConverter";
 
-    public MainListItem convert(TmdbTvShow source) {
-        MainListItem target = new MainListItem();
+    public MainListItemDto convert(TmdbTvShow source) {
+        MainListItemDto target = new MainListItemDto();
         target.setTitle(source.getName());
         target.setGenre(getGenre(source.getGenreIds()));
         target.setRating(source.getVoteAverage());

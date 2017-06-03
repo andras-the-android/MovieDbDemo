@@ -6,18 +6,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.andras.moviedbdemo.R;
-import com.example.andras.moviedbdemo.data.MainListItem;
+import com.example.andras.moviedbdemo.data.MainListItemDto;
 import com.example.andras.moviedbdemo.databinding.ActivityMainBinding;
 import com.example.andras.moviedbdemo.di.MainComponent;
-import com.example.andras.moviedbdemo.searcher.Searcher;
 import com.example.andras.moviedbdemo.searcher.SearcherImpl;
 import com.example.andras.moviedbdemo.ui.common.Navigator;
 import com.example.andras.moviedbdemo.ui.common.SearchViewWrapper;
 import com.example.andras.moviedbdemo.ui.main.content.MainContentViewImpl;
 import com.example.andras.moviedbdemo.ui.main.content.MainContentViewModel;
-import com.example.andras.moviedbdemo.ui.main.listitem.MainListItemViewModel;
 
 import java.util.List;
 
@@ -34,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     private ActivityMainBinding binding;
     private MainContentViewModel moviesViewModel;
     private MainContentViewModel tvShowsViewModel;
+    private MainContentViewModel peopleViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,20 +46,32 @@ public class MainActivity extends AppCompatActivity implements MainView {
         moviesViewModel = new MainContentViewModel(moviesView, new SearcherImpl<>(), navigator);
         MainContentViewImpl tvShowView = new MainContentViewImpl(this);
         tvShowsViewModel = new MainContentViewModel(tvShowView, new SearcherImpl<>(), navigator);
+        MainContentViewImpl peopleView = new MainContentViewImpl(this);
+        peopleViewModel = new MainContentViewModel(peopleView, new SearcherImpl<>(), navigator);
 
-        binding.viewPager.setAdapter(new PagerAdapter(new MainContentViewImpl[]{moviesView, tvShowView} ));
+        binding.viewPager.setAdapter(new PagerAdapter(new MainContentViewImpl[]{moviesView, peopleView, tvShowView} ));
         binding.tabLayout.setupWithViewPager(binding.viewPager);
         model.setView(this);
     }
 
     @Override
-    public void setMovieItems(List<MainListItem> movies) {
+    public void showError() {
+        Toast.makeText(this, "Error loading data", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setMovieItems(List<MainListItemDto> movies) {
         moviesViewModel.setItems(movies);
     }
 
     @Override
-    public void setTvItems(List<MainListItem> movies) {
-        tvShowsViewModel.setItems(movies);
+    public void setTvItems(List<MainListItemDto> tvShows) {
+        tvShowsViewModel.setItems(tvShows);
+    }
+
+    @Override
+    public void setPersonItems(List<MainListItemDto> people) {
+        peopleViewModel.setItems(people);
     }
 
     @Override

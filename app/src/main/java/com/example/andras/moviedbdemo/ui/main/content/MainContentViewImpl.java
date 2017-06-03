@@ -1,16 +1,13 @@
 package com.example.andras.moviedbdemo.ui.main.content;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import com.example.andras.moviedbdemo.data.MainListItem;
 import com.example.andras.moviedbdemo.databinding.ViewMainContentBinding;
 import com.example.andras.moviedbdemo.ui.main.listitem.MainAdapter;
 import com.example.andras.moviedbdemo.ui.main.listitem.MainListItemViewModel;

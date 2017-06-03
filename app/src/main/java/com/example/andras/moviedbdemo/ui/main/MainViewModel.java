@@ -2,14 +2,9 @@ package com.example.andras.moviedbdemo.ui.main;
 
 import android.util.Log;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
-import com.example.andras.moviedbdemo.data.MainListItem;
 import com.example.andras.moviedbdemo.interactor.TheMovieDbInteractor;
-import com.example.andras.moviedbdemo.ui.common.Navigator;
-import com.example.andras.moviedbdemo.ui.main.listitem.MainListItemViewModel;
 
-import java.util.List;
+import java.util.Collections;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -19,25 +14,33 @@ public class MainViewModel {
     private static final String TAG = "MainViewModel";
 
     private TheMovieDbInteractor theMovieDbInteractor;
+    private MainView view;
 
     public MainViewModel(TheMovieDbInteractor theMovieDbInteractor) {
         this.theMovieDbInteractor = theMovieDbInteractor;
     }
 
     public void setView(MainView view) {
-        theMovieDbInteractor.loadPopularMovies(1)
+        this.view = view;
+        theMovieDbInteractor.loadPopularMovies()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.computation())
-                .subscribe(view::setMovieItems, this::onError);
+                .subscribe(view::setMovieItems, t -> {view.setMovieItems(Collections.emptyList()); onError(t);});
 
-        theMovieDbInteractor.loadPopularTvShows(1)
+        theMovieDbInteractor.loadPopularTvShows()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.computation())
-                .subscribe(view::setTvItems, this::onError);
+                .subscribe(view::setTvItems, t -> {view.setTvItems(Collections.emptyList()); onError(t);});
+
+        theMovieDbInteractor.loadPopularPeople()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.computation())
+                .subscribe(view::setPersonItems, t -> {view.setPersonItems(Collections.emptyList()); onError(t);});
     }
 
-    private void onError(Throwable e) {
-        Log.e(TAG, e.getMessage(), e);
+    private void onError(Throwable t) {
+        Log.e(TAG, t.getMessage(), t);
+        view.showError();
     }
 
 }

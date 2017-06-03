@@ -2,7 +2,7 @@ package com.example.andras.moviedbdemo.ui.main.listitem;
 
 import android.view.View;
 
-import com.example.andras.moviedbdemo.data.MainListItem;
+import com.example.andras.moviedbdemo.data.MainListItemDto;
 import com.example.andras.moviedbdemo.ui.common.Navigator;
 
 import java.math.RoundingMode;
@@ -17,16 +17,16 @@ public class MainListItemViewModel {
         ratingFormat.setRoundingMode(RoundingMode.HALF_UP);
     }
 
-    private MainListItem mainListItem;
+    private MainListItemDto mainListItem;
     private Navigator navigator;
     private MainListItemView view;
 
-    public MainListItemViewModel(MainListItem mainListItem, Navigator navigator) {
+    public MainListItemViewModel(MainListItemDto mainListItem, Navigator navigator) {
         this.mainListItem = mainListItem;
         this.navigator = navigator;
     }
 
-    public MainListItem getDto() {
+    public MainListItemDto getDto() {
         return mainListItem;
     }
 
