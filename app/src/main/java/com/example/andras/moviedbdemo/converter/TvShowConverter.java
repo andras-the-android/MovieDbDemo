@@ -5,22 +5,27 @@ import android.util.Log;
 
 import com.example.andras.moviedbdemo.data.MainListItemDto;
 import com.example.andras.moviedbdemo.data.tmdb.TmdbTvShow;
-
-import java.util.List;
+import com.example.andras.moviedbdemo.interactor.GenreInteractor;
 
 public class TvShowConverter implements Converter<TmdbTvShow, MainListItemDto> {
 
     private static final String TAG = "MovieConverter";
+    private GenreInteractor genreInteractor;
+
+    public TvShowConverter(GenreInteractor genreInteractor) {
+        this.genreInteractor = genreInteractor;
+    }
 
     public MainListItemDto convert(TmdbTvShow source) {
         MainListItemDto target = new MainListItemDto();
         target.setTitle(source.getName());
-        target.setGenre(getGenre(source.getGenreIds()));
+        target.setGenre(genreInteractor.concatGenresByIdForTvShows(source.getGenreIds()));
         target.setRating(source.getVoteAverage());
         target.setReleaseYear(getReleaseYear(source.getFirstAirDate()));
         target.setDescription(source.getOverview());
         target.setImageUrl(source.getPosterPath());
         return target;
+
     }
 
     private int getReleaseYear(String releaseDateText) {
@@ -30,17 +35,5 @@ public class TvShowConverter implements Converter<TmdbTvShow, MainListItemDto> {
             Log.d(TAG, e.getMessage(), e);
             return 0;
         }
-    }
-
-    private String getGenre(List<Integer> genres) {
-//        StringBuffer sb = new StringBuffer();
-//        for (Genre genre : genres) {
-//            if (sb.length() > 0) {
-//                sb.append(", ");
-//            }
-//            sb.append(genre.getName());
-//        }
-//        return sb.toString();
-        return "temp genre";
     }
 }

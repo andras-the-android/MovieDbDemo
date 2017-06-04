@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class Genre implements Serializable {
+public class TmdbGenre implements Serializable {
 
     @SerializedName("id")
     private int id;

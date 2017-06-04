@@ -21,9 +21,7 @@ public class TmdbMovie implements Serializable {
     private String releaseDateText;
 
     @SerializedName("genre_ids")
-    private List<Integer> genreIdList;
-
-    private List<Genre> genres;
+    private List<Integer> genreIds;
 
     @SerializedName("id")
     private int id;
@@ -73,12 +71,8 @@ public class TmdbMovie implements Serializable {
         return releaseDateText;
     }
 
-    public List<Integer> getGenreIdList() {
-        return genreIdList;
-    }
-
-    public List<Genre> getGenres() {
-        return genres;
+    public List<Integer> getGenreIds() {
+        return genreIds;
     }
 
     public int getId() {

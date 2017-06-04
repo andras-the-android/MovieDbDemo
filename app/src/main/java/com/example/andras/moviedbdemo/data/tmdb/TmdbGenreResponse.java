@@ -5,16 +5,12 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by false on 2017. 02. 28..
- */
+public class TmdbGenreResponse implements Serializable {
 
-public class GenresListResponse implements Serializable {
     @SerializedName("genres")
+    private List<TmdbGenre> genres;
 
-    List<Genre> genres;
-
-    public List<Genre> getGenres() {
+    public List<TmdbGenre> getGenres() {
         return genres;
     }
 }

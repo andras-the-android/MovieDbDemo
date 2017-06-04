@@ -7,6 +7,7 @@ import com.example.andras.moviedbdemo.data.MainListItemDto;
 import com.example.andras.moviedbdemo.data.tmdb.TmdbMovie;
 import com.example.andras.moviedbdemo.data.tmdb.TmdbPerson;
 import com.example.andras.moviedbdemo.data.tmdb.TmdbTvShow;
+import com.example.andras.moviedbdemo.interactor.GenreInteractor;
 import com.example.andras.moviedbdemo.interactor.TheMovieDbInteractor;
 import com.example.andras.moviedbdemo.converter.TvShowConverter;
 import com.example.andras.moviedbdemo.network.TheMovieDbApi;
@@ -22,14 +23,14 @@ class TheMovieDbModule {
 
     @Provides
     @Singleton
-    Converter<TmdbMovie, MainListItemDto> provideMovieConverter() {
-        return new MovieConverter();
+    Converter<TmdbMovie, MainListItemDto> provideMovieConverter(GenreInteractor genreInteractor) {
+        return new MovieConverter(genreInteractor);
     }
 
     @Provides
     @Singleton
-    Converter<TmdbTvShow, MainListItemDto> provideTvShowConverter() {
-        return new TvShowConverter();
+    Converter<TmdbTvShow, MainListItemDto> provideTvShowConverter(GenreInteractor genreInteractor) {
+        return new TvShowConverter(genreInteractor);
     }
 
     @Provides
@@ -46,4 +47,11 @@ class TheMovieDbModule {
                                                      Converter<TmdbPerson, MainListItemDto> personConverter) {
         return new TheMovieDbInteractor(api, movieConverter, tvShowConverter, personConverter);
     }
+
+    @Provides
+    @Singleton
+    GenreInteractor provideGenreInteractor(TheMovieDbApi api) {
+        return new GenreInteractor(api);
+    }
+
 }
