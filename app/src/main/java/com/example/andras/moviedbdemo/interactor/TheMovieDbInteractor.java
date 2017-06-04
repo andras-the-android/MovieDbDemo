@@ -1,6 +1,5 @@
 package com.example.andras.moviedbdemo.interactor;
 
-import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.example.andras.moviedbdemo.converter.Converter;
 import com.example.andras.moviedbdemo.data.MainListItemDto;
@@ -36,30 +35,26 @@ public class TheMovieDbInteractor {
     public Observable<List<MainListItemDto>> loadPopularMovies() {
         return api.getPopularMovies()
                 .map(TmdbMovieResponse::getMovies)
-                .map(this::mapMovieList);
+                .map(tmdbMovies -> Stream.of(tmdbMovies).map(movieConverter::convert).toList());
     }
 
     public Observable<List<MainListItemDto>> loadPopularTvShows() {
         return api.getPopularTvShows()
                 .map(TmdbTvShowResponse::getTvShows)
-                .map(this::mapTvShowList);
+                .map(tmdbTvShows -> Stream.of(tmdbTvShows).map(tvShowConverter::convert).toList());
     }
 
+    /**
+     * Tmdb getPopularPeople api provides only a few information so for the detailed profiles we have to
+     * call the getPersonDetail api with the id-s one-by-one.
+     */
     public Observable<List<MainListItemDto>> loadPopularPeople() {
-        return api.getPopularPeople()
+        Observable<Observable<TmdbPerson>> personDetails = api.getPopularPeople()
                 .map(TmdbPersonResponse::getPeople)
-                .map(this::mapPersonList);
+                .flatMap(Observable::from)
+                .map(tmdbPerson -> api.getPersonDetails(tmdbPerson.getId()));
+
+        return Observable.zip(personDetails, tmdbPersonObjects -> Stream.of(tmdbPersonObjects).map(object -> personConverter.convert((TmdbPerson)object)).toList());
     }
 
-    private List<MainListItemDto> mapMovieList(List<TmdbMovie> tmdbMovies) {
-        return Stream.of(tmdbMovies).map(movieConverter::convert).collect(Collectors.toList());
-    }
-
-    private List<MainListItemDto> mapTvShowList(List<TmdbTvShow> tmdbTvShows) {
-        return Stream.of(tmdbTvShows).map(tvShowConverter::convert).collect(Collectors.toList());
-    }
-
-    private List<MainListItemDto> mapPersonList(List<TmdbPerson> tmdbTvShows) {
-        return Stream.of(tmdbTvShows).map(personConverter::convert).collect(Collectors.toList());
-    }
 }
