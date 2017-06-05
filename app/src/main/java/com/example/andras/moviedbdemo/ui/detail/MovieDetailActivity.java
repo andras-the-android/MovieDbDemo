@@ -26,7 +26,6 @@ public class MovieDetailActivity extends AppCompatActivity {
     public static final String EXTRA_MODEL = "extraModel";
     private ActivityMovieDetailsBinding binding;
     private TheMovieDbApiBuilder apiBuilder;
-    private Picasso picasso;
     private MainListItemDto mainListItem;
 
     @Override
@@ -43,8 +42,7 @@ public class MovieDetailActivity extends AppCompatActivity {
 
     private void loadThumbnailImage(MainListItemDto mainListItem) {
         apiBuilder = NetworkComponent.Get.component().theMovieDbApiBuilder();
-        picasso = apiBuilder.getPicasso(this);
-        picasso.load(apiBuilder.getBaseImageUrlForThumbnailSize() + mainListItem.getImageUrl())
+        Picasso.with(this).load(apiBuilder.getBaseImageUrlForThumbnailSize() + mainListItem.getImageUrl())
                 .into(binding.detailPosterImageView, new Callback() {
             @Override
             public void onSuccess() {
@@ -60,7 +58,7 @@ public class MovieDetailActivity extends AppCompatActivity {
     }
 
     private void loadFullSizeImage(Transition transition) {
-        picasso.load(apiBuilder.getBaseImageUrlForOriginalSize() + mainListItem.getImageUrl())
+        Picasso.with(this).load(apiBuilder.getBaseImageUrlForOriginalSize() + mainListItem.getImageUrl())
                 .placeholder(binding.detailPosterImageView.getDrawable())
                 .into(binding.detailPosterImageView);
     }

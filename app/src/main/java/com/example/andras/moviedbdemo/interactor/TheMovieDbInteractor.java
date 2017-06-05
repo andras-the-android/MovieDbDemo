@@ -45,8 +45,8 @@ public class TheMovieDbInteractor {
     }
 
     /**
-     * Tmdb getPopularPeople api provides only a few information so for the detailed profiles we have to
-     * call the getPersonDetail api with the id-s one-by-one.
+     * Tmdb getPopularPeople api provides only a few information so for the detailed profiles we
+     * have to call the getPersonDetail api with the id-s one-by-one.
      */
     public Observable<List<MainListItemDto>> loadPopularPeople() {
         Observable<Observable<TmdbPerson>> personDetails = api.getPopularPeople()
@@ -54,7 +54,13 @@ public class TheMovieDbInteractor {
                 .flatMap(Observable::from)
                 .map(tmdbPerson -> api.getPersonDetails(tmdbPerson.getId()));
 
-        return Observable.zip(personDetails, tmdbPersonObjects -> Stream.of(tmdbPersonObjects).map(object -> personConverter.convert((TmdbPerson)object)).toList());
+        return Observable.zip(personDetails, this::mapPersonObjectsToListItem);
+    }
+
+    private List<MainListItemDto> mapPersonObjectsToListItem(Object[] tmdbPersonObjects) {
+        return Stream.of(tmdbPersonObjects)
+                .map(object -> personConverter.convert((TmdbPerson)object))
+                .toList();
     }
 
 }

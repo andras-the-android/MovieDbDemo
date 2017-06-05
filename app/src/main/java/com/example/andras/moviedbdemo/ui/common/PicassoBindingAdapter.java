@@ -17,7 +17,6 @@ public final class PicassoBindingAdapter {
     @BindingAdapter({"app:imageUrl"})
     public static void loadImage(ImageView view, String imageUrl) {
         TheMovieDbApiBuilder apiBuilder = NetworkComponent.Get.component().theMovieDbApiBuilder();
-        Picasso picasso = apiBuilder.getPicasso(view.getContext());
-        picasso.load(apiBuilder.getBaseImageUrlForThumbnailSize() + imageUrl).placeholder(R.mipmap.ic_launcher).into(view);
+        Picasso.with(view.getContext()).load(apiBuilder.getBaseImageUrlForThumbnailSize() + imageUrl).placeholder(R.mipmap.ic_launcher).into(view);
     }
 }

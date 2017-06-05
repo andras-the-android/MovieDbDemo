@@ -4,6 +4,7 @@ import com.example.andras.moviedbdemo.data.MainListItemDto;
 import com.example.andras.moviedbdemo.data.tmdb.TmdbPerson;
 
 public class PersonConverter implements Converter<TmdbPerson, MainListItemDto> {
+
     @Override
     public MainListItemDto convert(TmdbPerson source) {
         MainListItemDto target = new MainListItemDto();

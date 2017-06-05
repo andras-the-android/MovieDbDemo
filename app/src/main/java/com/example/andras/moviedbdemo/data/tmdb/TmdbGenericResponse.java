@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class TmdbGenericResponse implements Serializable {
+abstract class TmdbGenericResponse implements Serializable {
 
     @SerializedName("page")
     private int page;

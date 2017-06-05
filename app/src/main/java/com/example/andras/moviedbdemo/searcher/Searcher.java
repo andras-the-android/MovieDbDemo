@@ -9,7 +9,7 @@ public interface Searcher<T> {
 
     Searcher<T> setMatcher(Matcher<T> matcher);
 
-    public interface Matcher<T> {
+    interface Matcher<T> {
 
         boolean isMatches(T item, String searchExpression);
     }

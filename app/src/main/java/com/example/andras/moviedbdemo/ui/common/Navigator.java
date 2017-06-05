@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 
 import com.example.andras.moviedbdemo.data.MainListItemDto;
 import com.example.andras.moviedbdemo.ui.detail.MovieDetailActivity;
@@ -22,12 +21,6 @@ public class Navigator {
     public void goToDetailsScreen(MainListItemDto mainListItem, Bundle bundle) {
         Intent i = new Intent(context, MovieDetailActivity.class);
         i.putExtra(MovieDetailActivity.EXTRA_MODEL, mainListItem);
-        try {
-            ContextCompat.startActivity(context, i, bundle);
-        } catch (IllegalArgumentException e) {
-            //shared element transition sometimes causes exception. This way we can fallback to the simple way.
-            Log.e(TAG, e.getMessage(), e);
-            context.startActivity(i);
-        }
+        ContextCompat.startActivity(context, i, bundle);
     }
 }
