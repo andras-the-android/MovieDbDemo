@@ -26,7 +26,7 @@
                 <ImageView
                     android:id="@+id/detail_poster_image_view"
                     android:layout_width="match_parent"
-                    android:layout_height="400dp"
+                    android:layout_height="500dp"
                     android:scaleType="centerCrop"
                     app:layout_collapseMode="parallax"/>
 
@@ -34,7 +34,7 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:title="@{model.mainListItem.title}"
+                    android:title="@{model.dto.title}"
                     app:layout_collapseMode="pin"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                     app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
@@ -64,7 +64,25 @@
                     android:textSize="16sp"
                     android:textColor="@color/text_primary"
                     android:layout_marginTop="8dp"
-                    android:text="Rating"
+                    android:text="@string/genre"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginBottom="8dp"
+                    android:text="@{model.dto.genre}"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_primary"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/rating"
                     />
 
                 <TextView
@@ -82,7 +100,7 @@
                     android:textSize="16sp"
                     android:textColor="@color/text_primary"
                     android:layout_marginTop="8dp"
-                    android:text="Released"
+                    android:text="@string/released"
                     />
 
                 <TextView
@@ -100,7 +118,7 @@
                     android:textSize="16sp"
                     android:textColor="@color/text_primary"
                     android:layout_marginTop="8dp"
-                    android:text="Overview"
+                    android:text="@string/description"
                     />
 
                 <TextView
@@ -109,7 +127,7 @@
                     android:textSize="16sp"
                     android:textColor="@color/text_secondary"
                     android:layout_marginBottom="8dp"
-                    android:text="@{model.mainListItem.description}"
+                    android:text="@{model.dto.description}"
                     />
 
 

@@ -4,22 +4,22 @@ import com.example.andras.moviedbdemo.data.MainListItemDto;
 
 public class MovieDetailViewModel {
 
-    private MainListItemDto mainListItem;
+    private MainListItemDto dto;
 
-    MovieDetailViewModel(MainListItemDto mainListItem) {
-        this.mainListItem = mainListItem;
+    MovieDetailViewModel(MainListItemDto dto) {
+        this.dto = dto;
     }
 
-    public MainListItemDto getMainListItem() {
-        return mainListItem;
+    public MainListItemDto getDto() {
+        return dto;
     }
 
     public String getRatingText() {
-        return String.valueOf(mainListItem.getRating());
+        return String.valueOf(dto.getRating());
     }
 
     public String getReleaseYearText() {
-        return String.valueOf(mainListItem.getReleaseYear());
+        return String.valueOf(dto.getReleaseYear());
     }
 
 }
