@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     private void onSearchViewTextChanged(String expression) {
         moviesViewModel.search(expression);
+        peopleViewModel.search(expression);
         tvShowsViewModel.search(expression);
     }
 
